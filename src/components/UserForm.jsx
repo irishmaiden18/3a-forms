@@ -11,6 +11,15 @@ const UserForm = () => {
     */
 
     const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
+
+    // a state specifically for keeping track of the data we are displaying
+    // const [userDisplay, setUserDisplay] = useState("--none--")
+    // const [emailDisplay, setEmailDisplay] = useState("--none--")
+
+    const [userDisplay, setUserDisplay] = useState({
+        username: "--none--", 
+        email: "--none--"})
 
     const handleUserInput = (usernameInput) => {
         
@@ -25,21 +34,47 @@ const UserForm = () => {
         // ALWAYS use this!
         event.preventDefault()
 
-        alert(`Username: ${username}`)
+        //alert(`Username: ${username}`)
+
+        // setUserDisplay(username)
+        // setEmailDisplay(email)
+
+        // userDisplay object
+        // setUserDisplay({username: username, email: email})
+        
+        // for objects, if the property name matches the variable name (like { username: username, email: email }), you can use the following shorthand:
+        setUserDisplay({username, email})
 
         // clear the input state variable
         setUsername("")
+        setEmail("")
     }
 
   return (
     <>
         <h2>User Form</h2>
+        <h3>CurrentUser: {userDisplay.username}</h3>
+        <h3>Email: {userDisplay.email}</h3>
+
         <form onSubmit={handleSubmit}>
+
             <div>
                 <label>Username: </label>
                 {/* event.target.value for our onChange keeps track of what we are typing in the input element */}
-                <input value={username} onChange={(event) => handleUserInput(event.target.value)}/>
+                <input 
+                    value={username} 
+                    onChange={(event) => handleUserInput(event.target.value)}/>
             </div>
+
+            <div>
+                <label>Email: </label>
+                <input 
+                    type="email"
+                    value={email}
+                    // only need separate handler function for additional logic/steps. if those aren't needed, the setStateFunction for the current input should be all you need 
+                    onChange={(event) => setEmail(event.target.value)}/>
+            </div>
+
             <button>Submit</button>
         </form>
     </>
