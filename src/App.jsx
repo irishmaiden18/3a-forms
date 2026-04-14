@@ -1,3 +1,4 @@
+import FeedbackForm from "./components/FeedbackForm"
 import UserForm from "./components/UserForm"
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <h1>3A-Forms</h1>
       <UserForm/>
+      <FeedbackForm/>
     </>
   )
 }
