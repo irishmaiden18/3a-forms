@@ -1,14 +1,17 @@
 import { useState } from "react"
 
 const FeedbackForm = () => {
-
-    // when dealing with multiple form inputs, consider using an object instead of separate state variables
-    const [formData, setFormData] = useState({
+    
+    // set some default form data
+    const defaultFormData = {
         name: "",
         topic: "",
         rating: 3,
         message: ""
-    })
+    }
+
+    // when dealing with multiple form inputs, consider using an object instead of separate state variables
+    const [formData, setFormData] = useState(defaultFormData)
 
     // keep track of submitted data that we want to display
     // don't need default values, we don't want to display anything until submit, use null, which is't an object and is falsey
@@ -48,6 +51,9 @@ const FeedbackForm = () => {
 
         // set our feedback data equal to our formData when we submit
         setFeedbackData(formData)
+
+        // clear our form inputs after submit
+        setFormData(defaultFormData)
     }
 
     return (
